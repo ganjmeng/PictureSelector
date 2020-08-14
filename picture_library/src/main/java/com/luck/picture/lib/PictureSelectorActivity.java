@@ -65,7 +65,7 @@ import com.luck.picture.lib.tools.ToastUtils;
 import com.luck.picture.lib.tools.ValueOf;
 import com.luck.picture.lib.widget.FolderPopWindow;
 import com.luck.picture.lib.widget.RecyclerPreloadView;
-import com.jimmy.ucrop_v1.UCrop;
+import com.jimmy.ucrop_v1.FUCrop;
 import com.jimmy.ucrop_v1.model.CutInfo;
 
 import java.io.File;
@@ -794,7 +794,7 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         bundle.putBoolean(PictureConfig.EXTRA_SHOW_CAMERA, mAdapter.isShowCamera());
         bundle.putString(PictureConfig.EXTRA_IS_CURRENT_DIRECTORY, mTvPictureTitle.getText().toString());
         JumpUtils.startPicturePreviewActivity(getContext(), config.isWeChatStyle, bundle,
-                config.selectionMode == PictureConfig.SINGLE ? UCrop.REQUEST_CROP : UCrop.REQUEST_MULTI_CROP);
+                config.selectionMode == PictureConfig.SINGLE ? FUCrop.REQUEST_CROP : FUCrop.REQUEST_MULTI_CROP);
 
         overridePendingTransition(config.windowAnimationStyle != null
                         && config.windowAnimationStyle.activityPreviewEnterAnimation != 0
@@ -1356,7 +1356,7 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
             bundle.putInt(PictureConfig.EXTRA_DATA_COUNT, ValueOf.toInt(mTvPictureTitle.getTag(R.id.view_count_tag)));
             bundle.putString(PictureConfig.EXTRA_IS_CURRENT_DIRECTORY, mTvPictureTitle.getText().toString());
             JumpUtils.startPicturePreviewActivity(getContext(), config.isWeChatStyle, bundle,
-                    config.selectionMode == PictureConfig.SINGLE ? UCrop.REQUEST_CROP : UCrop.REQUEST_MULTI_CROP);
+                    config.selectionMode == PictureConfig.SINGLE ? FUCrop.REQUEST_CROP : FUCrop.REQUEST_MULTI_CROP);
             overridePendingTransition(config.windowAnimationStyle != null
                     && config.windowAnimationStyle.activityPreviewEnterAnimation != 0
                     ? config.windowAnimationStyle.activityPreviewEnterAnimation : R.anim.picture_anim_enter, R.anim.picture_anim_fade_in);
@@ -1449,10 +1449,10 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
                         }
                     }
                     break;
-                case UCrop.REQUEST_CROP:
+                case FUCrop.REQUEST_CROP:
                     singleCropHandleResult(data);
                     break;
-                case UCrop.REQUEST_MULTI_CROP:
+                case FUCrop.REQUEST_MULTI_CROP:
                     multiCropHandleResult(data);
                     break;
                 case PictureConfig.REQUEST_CAMERA:
@@ -1463,9 +1463,9 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
             }
         } else if (resultCode == RESULT_CANCELED) {
             previewCallback(data);
-        } else if (resultCode == UCrop.RESULT_ERROR) {
+        } else if (resultCode == FUCrop.RESULT_ERROR) {
             if (data != null) {
-                Throwable throwable = (Throwable) data.getSerializableExtra(UCrop.EXTRA_ERROR);
+                Throwable throwable = (Throwable) data.getSerializableExtra(FUCrop.EXTRA_ERROR);
                 if (throwable != null) {
                     ToastUtils.s(getContext(), throwable.getMessage());
                 }
@@ -1828,7 +1828,7 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         if (data == null) {
             return;
         }
-        Uri resultUri = UCrop.getOutput(data);
+        Uri resultUri = FUCrop.getOutput(data);
         if (resultUri == null) {
             return;
         }
@@ -1897,7 +1897,7 @@ public class PictureSelectorActivity extends PictureBaseActivity implements View
         if (data == null) {
             return;
         }
-        List<CutInfo> mCuts = UCrop.getMultipleOutput(data);
+        List<CutInfo> mCuts = FUCrop.getMultipleOutput(data);
         if (mCuts == null || mCuts.size() == 0) {
             return;
         }

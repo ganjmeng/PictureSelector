@@ -178,9 +178,9 @@ PictureSelector.create(this).externalPictureVideo(video_path);
 -keep class com.luck.picture.lib.** { *; }
 
 #Ucrop
--dontwarn com.yalantis.ucrop**
--keep class com.yalantis.ucrop** { *; }
--keep interface com.yalantis.ucrop** { *; }
+-dontwarn com.jimmy.ucrop_v1**
+-keep class com.jimmy.ucrop_v1** { *; }
+-keep interface com.jimmy.ucrop_v1** { *; }
 
 #Okio
 -dontwarn org.codehaus.mojo.animal_sniffer.*

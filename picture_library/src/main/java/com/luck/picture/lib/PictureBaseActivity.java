@@ -46,7 +46,7 @@ import com.luck.picture.lib.tools.SdkVersionUtils;
 import com.luck.picture.lib.tools.StringUtils;
 import com.luck.picture.lib.tools.ToastUtils;
 import com.luck.picture.lib.tools.VoiceUtils;
-import com.jimmy.ucrop_v1.UCrop;
+import com.jimmy.ucrop_v1.FUCrop;
 import com.jimmy.ucrop_v1.model.CutInfo;
 
 import org.jetbrains.annotations.NotNull;
@@ -479,7 +479,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
             ToastUtils.s(this, getString(R.string.picture_not_crop_data));
             return;
         }
-        UCrop.Options options = basicOptions();
+        FUCrop.Options options = basicOptions();
         if (PictureSelectionConfig.cacheResourcesEngine != null) {
             PictureThreadUtils.executeByIo(new PictureThreadUtils.SimpleTask<String>() {
                 @Override
@@ -505,7 +505,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
      * @param mimeType
      * @param options
      */
-    private void startSingleCropActivity(String originalPath, String cachePath, String mimeType, UCrop.Options options) {
+    private void startSingleCropActivity(String originalPath, String cachePath, String mimeType, FUCrop.Options options) {
         boolean isHttp = PictureMimeType.isHasHttp(originalPath);
         String suffix = mimeType.replace("image/", ".");
         File file = new File(PictureFileUtils.getDiskCacheDir(getContext()),
@@ -516,7 +516,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
         } else {
             uri = isHttp || SdkVersionUtils.checkedAndroid_Q() ? Uri.parse(originalPath) : Uri.fromFile(new File(originalPath));
         }
-        UCrop.of(uri, Uri.fromFile(file))
+        FUCrop.of(uri, Uri.fromFile(file))
                 .withOptions(options)
                 .startAnimationActivity(this, config.windowAnimationStyle != null
                         ? config.windowAnimationStyle.activityCropEnterAnimation : R.anim.picture_anim_enter);
@@ -537,7 +537,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
             ToastUtils.s(this, getString(R.string.picture_not_crop_data));
             return;
         }
-        UCrop.Options options = basicOptions(list);
+        FUCrop.Options options = basicOptions(list);
         int size = list.size();
         index = 0;
         if (config.chooseMode == PictureMimeType.ofAll() && config.isWithVideoImage) {
@@ -590,7 +590,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
      * @param cutInfo
      * @param options
      */
-    private void startMultipleCropActivity(CutInfo cutInfo, int count, UCrop.Options options) {
+    private void startMultipleCropActivity(CutInfo cutInfo, int count, FUCrop.Options options) {
         String path = cutInfo.getPath();
         String mimeType = cutInfo.getMimeType();
         boolean isHttp = PictureMimeType.isHasHttp(path);
@@ -604,7 +604,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
         File file = new File(PictureFileUtils.getDiskCacheDir(this),
                 TextUtils.isEmpty(config.renameCropFileName) ? DateUtils.getCreateFileName("IMG_CROP_")
                         + suffix : config.camera || count == 1 ? config.renameCropFileName : StringUtils.rename(config.renameCropFileName));
-        UCrop.of(uri, Uri.fromFile(file))
+        FUCrop.of(uri, Uri.fromFile(file))
                 .withOptions(options)
                 .startAnimationMultipleCropActivity(this, config.windowAnimationStyle != null
                         ? config.windowAnimationStyle.activityCropEnterAnimation : R.anim.picture_anim_enter);
@@ -615,7 +615,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
      *
      * @return
      */
-    private UCrop.Options basicOptions() {
+    private FUCrop.Options basicOptions() {
         return basicOptions(null);
     }
 
@@ -624,7 +624,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
      *
      * @return
      */
-    private UCrop.Options basicOptions(ArrayList<CutInfo> list) {
+    private FUCrop.Options basicOptions(ArrayList<CutInfo> list) {
         int toolbarColor = 0, statusColor = 0, titleColor = 0;
         boolean isChangeStatusBarFontColor;
         if (config.cropStyle != null) {
@@ -660,7 +660,7 @@ public abstract class PictureBaseActivity extends AppCompatActivity {
                 isChangeStatusBarFontColor = AttrsUtils.getTypeValueBoolean(this, R.attr.picture_statusFontColor);
             }
         }
-        UCrop.Options options = config.uCropOptions == null ? new UCrop.Options() : config.uCropOptions;
+        FUCrop.Options options = config.uCropOptions == null ? new FUCrop.Options() : config.uCropOptions;
         options.isOpenWhiteStatusBar(isChangeStatusBarFontColor);
         options.setToolbarColor(toolbarColor);
         options.setStatusBarColor(statusColor);

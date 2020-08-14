@@ -31,7 +31,7 @@ import com.luck.picture.lib.tools.ToastUtils;
 import com.luck.picture.lib.tools.ValueOf;
 import com.luck.picture.lib.tools.VoiceUtils;
 import com.luck.picture.lib.widget.PreviewViewPager;
-import com.jimmy.ucrop_v1.UCrop;
+import com.jimmy.ucrop_v1.FUCrop;
 import com.jimmy.ucrop_v1.model.CutInfo;
 
 import java.io.File;
@@ -946,10 +946,10 @@ public class PicturePreviewActivity extends PictureBaseActivity implements
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
-                case UCrop.REQUEST_MULTI_CROP:
+                case FUCrop.REQUEST_MULTI_CROP:
                     // 裁剪数据
-                    List<CutInfo> list = UCrop.getMultipleOutput(data);
-                    data.putParcelableArrayListExtra(UCrop.Options.EXTRA_OUTPUT_URI_LIST,
+                    List<CutInfo> list = FUCrop.getMultipleOutput(data);
+                    data.putParcelableArrayListExtra(FUCrop.Options.EXTRA_OUTPUT_URI_LIST,
                             (ArrayList<? extends Parcelable>) list);
                     // 已选数量
                     data.putParcelableArrayListExtra(PictureConfig.EXTRA_SELECT_LIST,
@@ -957,7 +957,7 @@ public class PicturePreviewActivity extends PictureBaseActivity implements
                     setResult(RESULT_OK, data);
                     finish();
                     break;
-                case UCrop.REQUEST_CROP:
+                case FUCrop.REQUEST_CROP:
                     if (data != null) {
                         data.putParcelableArrayListExtra(PictureConfig.EXTRA_SELECT_LIST,
                                 (ArrayList<? extends Parcelable>) selectData);
@@ -966,8 +966,8 @@ public class PicturePreviewActivity extends PictureBaseActivity implements
                     finish();
                     break;
             }
-        } else if (resultCode == UCrop.RESULT_ERROR) {
-            Throwable throwable = (Throwable) data.getSerializableExtra(UCrop.EXTRA_ERROR);
+        } else if (resultCode == FUCrop.RESULT_ERROR) {
+            Throwable throwable = (Throwable) data.getSerializableExtra(FUCrop.EXTRA_ERROR);
             ToastUtils.s(getContext(), throwable.getMessage());
         }
     }

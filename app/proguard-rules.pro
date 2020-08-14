@@ -94,9 +94,9 @@
 -keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
 #ucrop
--dontwarn com.yalantis.ucrop**
--keep class com.yalantis.ucrop** { *; }
--keep interface com.yalantis.ucrop** { *; }
+-dontwarn com.jimmy.ucrop_v1**
+-keep class com.jimmy.ucrop_v1** { *; }
+-keep interface com.jimmy.ucrop_v1** { *; }
 
 #rxjava
 -dontwarn sun.misc.**

@@ -29,7 +29,7 @@ import java.util.ArrayList;
  * @date：2020-01-08 19:29
  * @describe：多图裁剪
  */
-public class PictureMultiCuttingActivity extends UCropActivity {
+public class PictureMultiCuttingActivity extends FUCropActivity {
     private final static int MIN_NUM = 1;
     private RecyclerView mRecyclerView;
     private PicturePhotoGalleryAdapter mAdapter;
@@ -46,15 +46,15 @@ public class PictureMultiCuttingActivity extends UCropActivity {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
         // 自定义裁剪输出名
-        renameCropFilename = intent.getStringExtra(UCrop.Options.EXTRA_RENAME_CROP_FILENAME);
+        renameCropFilename = intent.getStringExtra(FUCrop.Options.EXTRA_RENAME_CROP_FILENAME);
         // 是否单独拍照
-        isCamera = intent.getBooleanExtra(UCrop.Options.EXTRA_CAMERA, false);
+        isCamera = intent.getBooleanExtra(FUCrop.Options.EXTRA_CAMERA, false);
         // 是否混选模式
-        isWithVideoImage = intent.getBooleanExtra(UCrop.Options.EXTRA_WITH_VIDEO_IMAGE, false);
+        isWithVideoImage = intent.getBooleanExtra(FUCrop.Options.EXTRA_WITH_VIDEO_IMAGE, false);
         // 裁剪数据
-        list = getIntent().getParcelableArrayListExtra(UCrop.Options.EXTRA_CUT_CROP);
+        list = getIntent().getParcelableArrayListExtra(FUCrop.Options.EXTRA_CUT_CROP);
         // 列表是否显示动画效果
-        isAnimation = getIntent().getBooleanExtra(UCrop.Options.EXTRA_MULTIPLE_RECYCLERANIMATION, true);
+        isAnimation = getIntent().getBooleanExtra(FUCrop.Options.EXTRA_MULTIPLE_RECYCLERANIMATION, true);
         // Crop cut list
         if (list == null || list.size() == 0) {
             onBackPressed();
@@ -70,7 +70,7 @@ public class PictureMultiCuttingActivity extends UCropActivity {
      * 动态添加多图裁剪底部预览图片列表
      */
     private void addPhotoRecyclerView() {
-        boolean isMultipleSkipCrop = getIntent().getBooleanExtra(UCrop.Options.EXTRA_SKIP_MULTIPLE_CROP, true);
+        boolean isMultipleSkipCrop = getIntent().getBooleanExtra(FUCrop.Options.EXTRA_SKIP_MULTIPLE_CROP, true);
         mRecyclerView = new RecyclerView(this);
         mRecyclerView.setId(R.id.id_recycler);
         mRecyclerView.setBackgroundColor(ContextCompat.getColor(this, R.color.ucrop_color_widget_background));
@@ -152,10 +152,10 @@ public class PictureMultiCuttingActivity extends UCropActivity {
         } else {
             uri = isHttp || MimeType.isContent(path) ? Uri.parse(path) : Uri.fromFile(new File(path));
         }
-        extras.putParcelable(UCrop.EXTRA_INPUT_URI, uri);
+        extras.putParcelable(FUCrop.EXTRA_INPUT_URI, uri);
         File file = Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) ?
                 getExternalFilesDir(Environment.DIRECTORY_PICTURES) : getCacheDir();
-        extras.putParcelable(UCrop.EXTRA_OUTPUT_URI,
+        extras.putParcelable(FUCrop.EXTRA_OUTPUT_URI,
                 Uri.fromFile(new File(file,
                         TextUtils.isEmpty(renameCropFilename) ? FileUtils.getCreateFileName("IMG_CROP_") + suffix : isCamera ? renameCropFilename : FileUtils.rename(renameCropFilename))));
         intent.putExtras(extras);
@@ -322,7 +322,7 @@ public class PictureMultiCuttingActivity extends UCropActivity {
             oldCutIndex = cutIndex;
             if (cutIndex >= list.size()) {
                 setResult(RESULT_OK, new Intent()
-                        .putExtra(UCrop.Options.EXTRA_OUTPUT_URI_LIST, list)
+                        .putExtra(FUCrop.Options.EXTRA_OUTPUT_URI_LIST, list)
                 );
                 onBackPressed();
             } else {

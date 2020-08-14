@@ -31,7 +31,7 @@ import java.util.Locale;
  * <p/>
  * Builder class to ease Intent setup.
  */
-public class UCrop {
+public class FUCrop {
     public static final int REQUEST_MULTI_CROP = 609;
     public static final int REQUEST_CROP = 69;
     public static final int RESULT_ERROR = 96;
@@ -64,11 +64,11 @@ public class UCrop {
      * @param source      Uri for image to crop
      * @param destination Uri for saving the cropped image
      */
-    public static UCrop of(@NonNull Uri source, @NonNull Uri destination) {
-        return new UCrop(source, destination);
+    public static FUCrop of(@NonNull Uri source, @NonNull Uri destination) {
+        return new FUCrop(source, destination);
     }
 
-    private UCrop(@NonNull Uri source, @NonNull Uri destination) {
+    private FUCrop(@NonNull Uri source, @NonNull Uri destination) {
         mCropIntent = new Intent();
         mCropOptionsBundle = new Bundle();
         mCropOptionsBundle.putParcelable(EXTRA_INPUT_URI, source);
@@ -82,7 +82,7 @@ public class UCrop {
      * @param x aspect ratio X
      * @param y aspect ratio Y
      */
-    public UCrop withAspectRatio(float x, float y) {
+    public FUCrop withAspectRatio(float x, float y) {
         mCropOptionsBundle.putFloat(EXTRA_ASPECT_RATIO_X, x);
         mCropOptionsBundle.putFloat(EXTRA_ASPECT_RATIO_Y, y);
         return this;
@@ -92,7 +92,7 @@ public class UCrop {
      * Set an aspect ratio for crop bounds that is evaluated from source image width and height.
      * User won't see the menu with other ratios options.
      */
-    public UCrop useSourceImageAspectRatio() {
+    public FUCrop useSourceImageAspectRatio() {
         mCropOptionsBundle.putFloat(EXTRA_ASPECT_RATIO_X, 0);
         mCropOptionsBundle.putFloat(EXTRA_ASPECT_RATIO_Y, 0);
         return this;
@@ -104,7 +104,7 @@ public class UCrop {
      * @param width  max cropped image width
      * @param height max cropped image height
      */
-    public UCrop withMaxResultSize(@IntRange(from = MIN_SIZE) int width, @IntRange(from = MIN_SIZE) int height) {
+    public FUCrop withMaxResultSize(@IntRange(from = MIN_SIZE) int width, @IntRange(from = MIN_SIZE) int height) {
         if (width < MIN_SIZE) {
             width = MIN_SIZE;
         }
@@ -118,7 +118,7 @@ public class UCrop {
         return this;
     }
 
-    public UCrop withOptions(@NonNull Options options) {
+    public FUCrop withOptions(@NonNull Options options) {
         mCropOptionsBundle.putAll(options.getOptionBundle());
         return this;
     }
@@ -259,12 +259,12 @@ public class UCrop {
      */
 
     /**
-     * Get Intent to start {@link UCropActivity}
+     * Get Intent to start {@link FUCropActivity}
      *
-     * @return Intent for {@link UCropActivity}
+     * @return Intent for {@link FUCropActivity}
      */
     public Intent getIntent(@NonNull Context context) {
-        mCropIntent.setClass(context, UCropActivity.class);
+        mCropIntent.setClass(context, FUCropActivity.class);
         mCropIntent.putExtras(mCropOptionsBundle);
         return mCropIntent;
     }
@@ -326,7 +326,7 @@ public class UCrop {
      */
     @Nullable
     public static List<CutInfo> getMultipleOutput(@NonNull Intent intent) {
-        return intent.getParcelableArrayListExtra(UCrop.Options.EXTRA_OUTPUT_URI_LIST);
+        return intent.getParcelableArrayListExtra(FUCrop.Options.EXTRA_OUTPUT_URI_LIST);
     }
 
     /**
@@ -465,9 +465,9 @@ public class UCrop {
         /**
          * Choose what set of gestures will be enabled on each tab - if any.
          */
-        public void setAllowedGestures(@UCropActivity.GestureTypes int tabScale,
-                                       @UCropActivity.GestureTypes int tabRotate,
-                                       @UCropActivity.GestureTypes int tabAspectRatio) {
+        public void setAllowedGestures(@FUCropActivity.GestureTypes int tabScale,
+                                       @FUCropActivity.GestureTypes int tabRotate,
+                                       @FUCropActivity.GestureTypes int tabAspectRatio) {
             mOptionBundle.putIntArray(EXTRA_ALLOWED_GESTURES, new int[]{tabScale, tabRotate, tabAspectRatio});
         }
 

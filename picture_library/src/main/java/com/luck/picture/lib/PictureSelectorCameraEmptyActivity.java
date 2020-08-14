@@ -25,7 +25,7 @@ import com.luck.picture.lib.tools.PictureFileUtils;
 import com.luck.picture.lib.tools.SdkVersionUtils;
 import com.luck.picture.lib.tools.ToastUtils;
 import com.luck.picture.lib.tools.ValueOf;
-import com.jimmy.ucrop_v1.UCrop;
+import com.jimmy.ucrop_v1.FUCrop;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -134,7 +134,7 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
-                case UCrop.REQUEST_CROP:
+                case FUCrop.REQUEST_CROP:
                     singleCropHandleResult(data);
                     break;
                 case PictureConfig.REQUEST_CAMERA:
@@ -148,11 +148,11 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
                 PictureSelectionConfig.listener.onCancel();
             }
             closeActivity();
-        } else if (resultCode == UCrop.RESULT_ERROR) {
+        } else if (resultCode == FUCrop.RESULT_ERROR) {
             if (data == null) {
                 return;
             }
-            Throwable throwable = (Throwable) data.getSerializableExtra(UCrop.EXTRA_ERROR);
+            Throwable throwable = (Throwable) data.getSerializableExtra(FUCrop.EXTRA_ERROR);
             ToastUtils.s(getContext(), throwable.getMessage());
         }
     }
@@ -167,7 +167,7 @@ public class PictureSelectorCameraEmptyActivity extends PictureBaseActivity {
             return;
         }
         List<LocalMedia> medias = new ArrayList<>();
-        Uri resultUri = UCrop.getOutput(data);
+        Uri resultUri = FUCrop.getOutput(data);
         if (resultUri == null) {
             return;
         }
