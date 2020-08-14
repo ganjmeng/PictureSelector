@@ -5,7 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/PictureSelector.iml" filepath="$PROJECT_DIR$/PictureSelector.iml" group="PictureSelector" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="PictureSelector/app" />
       <module fileurl="file://$PROJECT_DIR$/picture_library/picture_library.iml" filepath="$PROJECT_DIR$/picture_library/picture_library.iml" group="PictureSelector/picture_library" />
-      <module fileurl="file://$PROJECT_DIR$/ucrop/ucrop.iml" filepath="$PROJECT_DIR$/ucrop/ucrop.iml" group="PictureSelector/ucrop" />
+      <module fileurl="file://$PROJECT_DIR$/ucrop_v1/ucrop_v1.iml" filepath="$PROJECT_DIR$/ucrop_v1/ucrop_v1.iml" group="PictureSelector/ucrop_v1" />
     </modules>
   </component>
 </project>

@@ -55,7 +55,7 @@ import com.jimmy.ucrop_v1.view.TransformImageView;
 import com.jimmy.ucrop_v1.view.UCropView;
 import com.jimmy.ucrop_v1.view.widget.AspectRatioTextView;
 import com.jimmy.ucrop_v1.view.widget.HorizontalProgressWheelView;
-
+import com.jimmy.ucrop_v1.R;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
