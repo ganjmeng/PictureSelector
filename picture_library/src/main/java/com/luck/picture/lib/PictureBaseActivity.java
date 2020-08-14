@@ -46,8 +46,8 @@ import com.luck.picture.lib.tools.SdkVersionUtils;
 import com.luck.picture.lib.tools.StringUtils;
 import com.luck.picture.lib.tools.ToastUtils;
 import com.luck.picture.lib.tools.VoiceUtils;
-import com.yalantis.ucrop.UCrop;
-import com.yalantis.ucrop.model.CutInfo;
+import com.yalantis.ucrop_v1.UCrop;
+import com.yalantis.ucrop_v1.model.CutInfo;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -55,7 +55,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 
 /**

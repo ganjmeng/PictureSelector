@@ -65,8 +65,8 @@ import com.luck.picture.lib.tools.ToastUtils;
 import com.luck.picture.lib.tools.ValueOf;
 import com.luck.picture.lib.widget.FolderPopWindow;
 import com.luck.picture.lib.widget.RecyclerPreloadView;
-import com.yalantis.ucrop.UCrop;
-import com.yalantis.ucrop.model.CutInfo;
+import com.yalantis.ucrop_v1.UCrop;
+import com.yalantis.ucrop_v1.model.CutInfo;
 
 import java.io.File;
 import java.util.ArrayList;
