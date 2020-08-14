@@ -46,8 +46,8 @@ import com.luck.picture.lib.tools.SdkVersionUtils;
 import com.luck.picture.lib.tools.StringUtils;
 import com.luck.picture.lib.tools.ToastUtils;
 import com.luck.picture.lib.tools.VoiceUtils;
-import com.yalantis.ucrop_v1.UCrop;
-import com.yalantis.ucrop_v1.model.CutInfo;
+import com.jimmy.ucrop_v1.UCrop;
+import com.jimmy.ucrop_v1.model.CutInfo;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -31,8 +31,8 @@ import com.luck.picture.lib.tools.ToastUtils;
 import com.luck.picture.lib.tools.ValueOf;
 import com.luck.picture.lib.tools.VoiceUtils;
 import com.luck.picture.lib.widget.PreviewViewPager;
-import com.yalantis.ucrop_v1.UCrop;
-import com.yalantis.ucrop_v1.model.CutInfo;
+import com.jimmy.ucrop_v1.UCrop;
+import com.jimmy.ucrop_v1.model.CutInfo;
 
 import java.io.File;
 import java.util.ArrayList;
