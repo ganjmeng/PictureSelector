@@ -53,9 +53,11 @@
 
         <activity
             android:name="com.yalantis.ucrop.UCropActivity"
+            tools:replace="android:theme"
             android:theme="@style/Base.Theme.NoActionBar" />
         <activity
             android:name="com.yalantis.ucrop.PictureMultiCuttingActivity"
+            tools:replace="android:theme"
             android:theme="@style/Base.Theme.NoActionBar" />
 
     </application>
